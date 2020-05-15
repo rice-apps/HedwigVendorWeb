@@ -3,7 +3,7 @@ import './index.css'
 import React from 'react'
 import {render} from 'react-dom'
 
-import App from './App'
+import Routes from './Routes'
 
 // Apollo Client Setup
 import { ApolloClient, HttpLink, InMemoryCache, ApolloProvider } from '@apollo/client';
@@ -17,7 +17,7 @@ const client = new ApolloClient({
 
 render(
     <ApolloProvider client={client}>
-        <App />
+        <Routes />
     </ApolloProvider>,
     document.querySelector("#app")
 )
