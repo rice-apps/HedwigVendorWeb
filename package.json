@@ -13,11 +13,13 @@
   },
   "dependencies": {
     "@apollo/client": "^3.0.0-beta.48",
+    "@apollo/link-ws": "^2.0.0-beta.3",
     "graphql": "^15.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
-    "styled-components": "^5.1.0"
+    "styled-components": "^5.1.0",
+    "subscriptions-transport-ws": "^0.9.16"
   },
   "devDependencies": {
     "nwb": "^0.24.6"
