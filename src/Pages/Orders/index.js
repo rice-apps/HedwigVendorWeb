@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useQuery, useMutation, gql } from '@apollo/client';
 import _ from 'lodash';
 
+// "or" filter: https://github.com/graphql-compose/graphql-compose-mongoose/issues/93
 const ORDERS_QUERY = gql`
     query OrdersForVendor($vendorID:MongoID){
         orderMany(filter: { vendor: $vendorID, OR: [{ fulfillment: Placed }, { fulfillment: Preparing }]}) {
