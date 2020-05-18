@@ -106,6 +106,7 @@ const Order = ({ order }) => {
     const [ markReady, ] = useMutation(
         ORDER_FULFILLMENT_MUTATE,
         {
+            variables: { id: _id, fulfillment: "Ready" },
             update: (cache, { data: { orderUpdateOne } }) => localUpdateOrders(cache, orderUpdateOne)
         }
     );
@@ -114,6 +115,7 @@ const Order = ({ order }) => {
         ORDER_FULFILLMENT_MUTATE,
         {
             // TODO: Exact same update as before; let's collapse them into the same function
+            variables: { id: _id, fulfillment: "Cancelled" },
             update: (cache, { data: { orderUpdateOne } }) => localUpdateOrders(cache, orderUpdateOne)
         }
     )
@@ -121,11 +123,10 @@ const Order = ({ order }) => {
     const [ markPreparing, ] = useMutation(
         ORDER_FULFILLMENT_MUTATE,
         {
+            variables: { id: _id, fulfillment: "Preparing" },
             update: (cache, { data: { orderUpdateOne } }) => localUpdateOrders(cache, orderUpdateOne)
         }
     )
-
-    const defaultMutateVariables = { id: _id };
 
     return (
         <div>
@@ -135,9 +136,9 @@ const Order = ({ order }) => {
             <p>Ordered At: {createdAt}</p>
             <p>Items: {items.map(item => item.product.name).join(", ")}</p>
             <p>Fulfillment Status: {fulfillment}</p>
-            <button onClick={() => markReady({ variables: {...defaultMutateVariables, fulfillment: "Ready" }})}>Mark Completed.</button>
-            <button onClick={() => markCancelled({ variables: {...defaultMutateVariables, fulfillment: "Cancelled" }})}>Mark Cancelled.</button>
-            <button onClick={() => markPreparing({ variables: {...defaultMutateVariables, fulfillment: "Preparing" }})}>Mark Preparing</button>
+            <button onClick={() => markReady()}>Mark Completed.</button>
+            <button onClick={() => markCancelled()}>Mark Cancelled.</button>
+            <button onClick={() => markPreparing()}>Mark Preparing</button>
         </div>
     )
 }
